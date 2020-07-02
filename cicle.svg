@@ -1,0 +1,32 @@
+<svg width="100" height="100" viewBox="0 0 42 42"  xmlns="http://www.w3.org/2000/svg" class="donut" id="donut" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+<style>
+.donut,.donut-segment {
+    -webkit-transition:all 3s;
+    -o-transition: all 3s;
+    transition: all 3s;
+}
+
+.chart-text {
+    font: 16px/1.4em Montserrat,Arial,sans-serif;
+    fill: #000;
+    -webkit-transform: translateY(.25em);
+    transform: translateY(.25em)
+}
+
+.chart-number {
+    font-size: .55em;
+    line-height: 1;
+    text-anchor: middle;
+    -webkit-transform: translateY(-.25em);
+    transform: translateY(-.25em)
+}
+
+.chart-label {
+    font-size: .2em;
+    text-transform: uppercase;
+    text-anchor: middle;
+    -webkit-transform: translateY(.7em);
+    transform: translateY(.7em)
+}
+</style>
+<circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="transparent"></circle><circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4" stroke-width="3"></circle><circle class="donut-segment" id="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#e4312c" stroke-width="3" stroke-dasharray="0 100" stroke-dashoffset="50" style="stroke-dasharray: 80, 89;"></circle><g class="chart-text"><text x="50%" y="50%" class="chart-number">61%</text><text x="50%" y="50%" class="chart-label">Saved</text></g></svg>
