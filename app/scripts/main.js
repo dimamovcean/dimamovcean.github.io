@@ -21,7 +21,7 @@
 
 'use strict';
 
-const applicationServerPublicKey = 'anykey';
+const applicationServerPublicKey = "BEz623WMgYZJRCQKWMfh6HsJnMhZtulqx_bjkfi4zXJBydGuYHlCiKMCC2-ce10QbZIxInspDAIDEoXncNdqPas";
 
 const pushButton = document.querySelector('.js-push-btn');
 
@@ -110,7 +110,8 @@ function updateBtn() {
 function subscribeUser() {
   const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
   swRegistration.pushManager.subscribe({
-    userVisibleOnly: true
+    userVisibleOnly: true,
+    applicationServerKey: applicationServerKey
   })
   .then(function(subscription) {
     console.log('User is subscribed.');
