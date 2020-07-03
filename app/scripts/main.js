@@ -21,7 +21,7 @@
 
 'use strict';
 
-const applicationServerPublicKey = 'anykey';
+const applicationServerPublicKey = '04b3bb81d85a31c1e94cb854034a9b055aa29ec54a526fed6ea05feb65658f72d41aff348c6176fe6ca82467acf2132f4608d9e8b804288e3c6648cc27902196a4';
 
 const pushButton = document.querySelector('.js-push-btn');
 
@@ -52,6 +52,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     console.log('Service Worker is registered', swReg);
 
     swRegistration = swReg;
+    initializeUI();
   })
   .catch(function(error) {
     console.error('Service Worker Error', error);
@@ -62,10 +63,21 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 }
 
 function initializeUI() {
+  pushButton.addEventListener('click', function() {
+    pushButton.disabled = true;
+    if (isSubscribed) {
+      // TODO: Unsubscribe user
+    } else {
+      subscribeUser();
+    }
+  });
+
   // Set the initial subscription value
   swRegistration.pushManager.getSubscription()
   .then(function(subscription) {
     isSubscribed = !(subscription === null);
+
+    updateSubscriptionOnServer(subscription);
 
     if (isSubscribed) {
       console.log('User IS subscribed.');
@@ -94,40 +106,6 @@ function updateBtn() {
   pushButton.disabled = false;
 }
 
-navigator.serviceWorker.register('sw.js')
-.then(function(swReg) {
-  console.log('Service Worker is registered', swReg);
-
-  swRegistration = swReg;
-  initializeUI();
-})
-
-function initializeUI() {
-  pushButton.addEventListener('click', function() {
-    pushButton.disabled = true;
-    if (isSubscribed) {
-      // TODO: Unsubscribe user
-    } else {
-      subscribeUser();
-    }
-  });
-
-  // Set the initial subscription value
-  swRegistration.pushManager.getSubscription()
-  .then(function(subscription) {
-    isSubscribed = !(subscription === null);
-
-    updateSubscriptionOnServer(subscription);
-
-    if (isSubscribed) {
-      console.log('User IS subscribed.');
-    } else {
-      console.log('User is NOT subscribed.');
-    }
-
-    updateBtn();
-  });
-}
 
 function subscribeUser() {
   const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
